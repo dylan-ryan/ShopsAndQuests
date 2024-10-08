@@ -15,13 +15,15 @@ namespace FirstPlayable_CalebWolthers_22012024
         public string breaker = "------------------------";
         public string healthStatus;
         public string lastItem;
-        public Enemy enemy; 
+        public Enemy enemy;
+        private Currency currency;
 
-        public UI(Player player, Map map, EnemyManager enemyManager)
+        public UI(Player player, Map map, EnemyManager enemyManager, Currency currency)
         {
             this.player = player;
             this.map = map;
             this.enemyManager = enemyManager;
+            this.currency = currency;
         }
 
 
@@ -127,7 +129,8 @@ namespace FirstPlayable_CalebWolthers_22012024
             Console.WriteLine("");
             Console.WriteLine(breaker);
             Console.WriteLine("Player Stats:");           
-            Console.WriteLine("");                                                          
+            Console.WriteLine("");
+            Console.WriteLine("Currency: " + currency.currency);
             Console.WriteLine("Health: " + player.healthSystem.health);                      
             Console.WriteLine("Health Status: " + healthStatus);
             Console.WriteLine("Attack Power: " + player.attack);
@@ -210,7 +213,6 @@ namespace FirstPlayable_CalebWolthers_22012024
                 Console.WriteLine("Attack power: " + ey.damage);
                 Console.WriteLine(breaker);
                 Console.WriteLine("");
-
             }
         }
 

@@ -16,6 +16,7 @@ namespace FirstPlayable_CalebWolthers_22012024
         private Player player;
         private Map map;
         public HealthSystem healthSystem;
+        public Currency currency;
 
         public EnemyGoblin(Map map, Player player) : base(map, player) 
         {
@@ -105,6 +106,7 @@ namespace FirstPlayable_CalebWolthers_22012024
             Char = '`';
             map.DisplayMap();
             isDead = true;
+            currency.AddCurrency(1);
             //enemyCount--;
         }
 

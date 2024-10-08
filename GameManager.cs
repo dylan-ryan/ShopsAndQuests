@@ -16,6 +16,7 @@ namespace FirstPlayable_CalebWolthers_22012024
         public static ItemManager itemManager;
         public static UI ui;
         public static bool gameOver;
+        public static Currency currency;
 
         public void Play()
         {
@@ -25,7 +26,7 @@ namespace FirstPlayable_CalebWolthers_22012024
             enemyManager = new EnemyManager(player, map);
             gameOver = false;
             map.StartMap();
-            ui = new UI(player, map, enemyManager);
+            ui = new UI(player, map, enemyManager, currency);
             ui.LoadStartingScreen();
             itemManager = new ItemManager(player, map, ui);
             player.SetStuff(map, enemyManager, ui, itemManager);
