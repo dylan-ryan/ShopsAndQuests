@@ -29,6 +29,7 @@ namespace FirstPlayable_CalebWolthers_22012024
             dir = "down";
             isDead = false;
             healthSystem = new HealthSystem(health);
+            currency = new Currency();
         }
 
 

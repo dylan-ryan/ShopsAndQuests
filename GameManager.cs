@@ -24,6 +24,7 @@ namespace FirstPlayable_CalebWolthers_22012024
             player = new Player();
             map = new Map(player);
             enemyManager = new EnemyManager(player, map);
+            currency = new Currency();
             gameOver = false;
             map.StartMap();
             ui = new UI(player, map, enemyManager, currency);

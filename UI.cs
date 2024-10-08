@@ -12,11 +12,11 @@ namespace FirstPlayable_CalebWolthers_22012024
         private Player player;
         private Map map;
         private EnemyManager enemyManager;
+        private Currency currency;
         public string breaker = "------------------------";
         public string healthStatus;
         public string lastItem;
         public Enemy enemy;
-        private Currency currency;
 
         public UI(Player player, Map map, EnemyManager enemyManager, Currency currency)
         {
