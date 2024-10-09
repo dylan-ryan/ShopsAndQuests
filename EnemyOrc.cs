@@ -18,7 +18,7 @@ namespace FirstPlayable_CalebWolthers_22012024
         public HealthSystem healthSystem;
         public Currency currency;
 
-        public EnemyOrc(Map map, Player player) : base(map, player)
+        public EnemyOrc(Map map, Player player, Currency currency) : base(map, player, currency)
         {
             this.map = map;
             this.player = player;
@@ -30,7 +30,7 @@ namespace FirstPlayable_CalebWolthers_22012024
             dir = "down";
             isDead = false;
             healthSystem = new HealthSystem(health);
-            currency = new Currency();
+            this.currency = currency;
         }
 
 

@@ -11,13 +11,15 @@ namespace FirstPlayable_CalebWolthers_22012024
 
         private Player player;
         private Map map;
+        private Currency currency;
         public List<Enemy> enemies;
 
-        public EnemyManager(Player player, Map map)
+        public EnemyManager(Player player, Map map, Currency currency)
         {
             this.player = player;
             this.map = map;
             enemies = new List<Enemy>();
+            this.currency = currency;
         }
 
 
@@ -34,7 +36,7 @@ namespace FirstPlayable_CalebWolthers_22012024
 
                     if (map.map[y, x] == '`')
                     {
-                        EnemyGoblin goblin = new EnemyGoblin(map, player);
+                        EnemyGoblin goblin = new EnemyGoblin(map, player,currency);
                         goblin.posX = x;
                         goblin.posY = y;
                         map.map[y, x] = goblin.Char;
@@ -58,7 +60,7 @@ namespace FirstPlayable_CalebWolthers_22012024
 
                     if (map.map[y, x] == '`')
                     {
-                        EnemyOrc orc = new EnemyOrc(map, player);
+                        EnemyOrc orc = new EnemyOrc(map, player, currency);
                         orc.posX = x;
                         orc.posY = y;
                         map.map[y, x] = orc.Char;
@@ -82,7 +84,7 @@ namespace FirstPlayable_CalebWolthers_22012024
 
                     if (map.map[y, x] == '`')
                     {
-                        EnemyMinotaur minotaur = new EnemyMinotaur(map, player);
+                        EnemyMinotaur minotaur = new EnemyMinotaur(map, player,currency);
                         minotaur.posX = x;
                         minotaur.posY = y;
                         map.map[y, x] = minotaur.Char;
@@ -106,7 +108,7 @@ namespace FirstPlayable_CalebWolthers_22012024
 
                     if (map.map[y, x] == '`')
                     {
-                        EnemyDragon dragon = new EnemyDragon(map, player);
+                        EnemyDragon dragon = new EnemyDragon(map, player, currency);
                         dragon.posX = x;
                         dragon.posY = y;
                         map.map[y, x] = dragon.Char;

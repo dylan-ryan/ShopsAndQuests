@@ -16,8 +16,9 @@ namespace FirstPlayable_CalebWolthers_22012024
         private Player player;
         private Map map;
         public HealthSystem healthSystem;
+        public Currency currency;
 
-        public EnemyDragon(Map map, Player player) : base(map, player)
+        public EnemyDragon(Map map, Player player,Currency currency) : base(map, player, currency)
         {
             this.map = map;
             this.player = player;
@@ -28,8 +29,8 @@ namespace FirstPlayable_CalebWolthers_22012024
             damage = Settings.dragonDamage;
             dir = "down";
             isDead = false;
+            this.currency = currency;
             healthSystem = new HealthSystem(health);
-            currency = new Currency();
         }
 
 

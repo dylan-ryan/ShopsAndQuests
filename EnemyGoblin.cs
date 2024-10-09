@@ -18,10 +18,11 @@ namespace FirstPlayable_CalebWolthers_22012024
         public HealthSystem healthSystem;
         public Currency currency;
 
-        public EnemyGoblin(Map map, Player player) : base(map, player) 
+        public EnemyGoblin(Map map, Player player, Currency currency) : base(map, player, currency) 
         {
             this.map = map;
             this.player = player;
+            this.currency = currency;
             maxHealth = Settings.goblinHealth;
             health = maxHealth;
             name = Settings.goblinName;
@@ -30,7 +31,6 @@ namespace FirstPlayable_CalebWolthers_22012024
             dir = "down";
             isDead = false;
             healthSystem = new HealthSystem(health);
-            currency = new Currency();
         }
 
 

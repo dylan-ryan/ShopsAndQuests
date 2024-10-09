@@ -17,19 +17,21 @@ namespace FirstPlayable_CalebWolthers_22012024
         public static UI ui;
         public static bool gameOver;
         public static Currency currency;
+        public static Shop shop;
 
         public void Play()
         {
             //Init
             player = new Player();
             map = new Map(player);
-            enemyManager = new EnemyManager(player, map);
             currency = new Currency();
+            enemyManager = new EnemyManager(player, map,currency);
             gameOver = false;
             map.StartMap();
             ui = new UI(player, map, enemyManager, currency);
             ui.LoadStartingScreen();
             itemManager = new ItemManager(player, map, ui);
+            shop = new Shop(currency,player,map,ui);
             player.SetStuff(map, enemyManager, ui, itemManager);
             map.DisplayMap();
 
@@ -52,18 +54,32 @@ namespace FirstPlayable_CalebWolthers_22012024
 
                 GetInput();
 
-                //Update
-                itemManager.UpdateItems();
-                player.Update(input);
-                enemyManager.UpdateEnemies();
+                // Check if the shop is open
+                if (shop.IsShopOpen())
+                {
+                    shop.HandleInput(input);
+                }
+                else
+                {
+                    // Update
+                    itemManager.UpdateItems();
+                    player.Update(input);
+                    enemyManager.UpdateEnemies();
 
+                    // Draw
+                    itemManager.DrawItems();
+                    enemyManager.DrawEnemies();
+                    player.Draw();
+                    map.DisplayMap();
+                    ui.Draw();
 
-                //Draw
-                itemManager.DrawItems();
-                enemyManager.DrawEnemies();
-                player.Draw();
-                map.DisplayMap();
-                ui.Draw();
+                    // Open the shop
+                    if (input.Key == ConsoleKey.Q)
+                    {
+                        Console.Clear();
+                        shop.DisplayShop();
+                    }
+                }
             }
             if (gameOver == true)
             {

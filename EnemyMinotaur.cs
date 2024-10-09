@@ -18,10 +18,11 @@ namespace FirstPlayable_CalebWolthers_22012024
         public HealthSystem healthSystem;
         public Currency currency;
 
-        public EnemyMinotaur(Map map, Player player) : base(map, player)
+        public EnemyMinotaur(Map map, Player player, Currency currency) : base(map, player, currency)
         {
             this.map = map;
             this.player = player;
+            this.currency = currency;
             maxHealth = Settings.minotaurHealth;
             health = maxHealth;
             name = Settings.minotaurName;
@@ -30,7 +31,6 @@ namespace FirstPlayable_CalebWolthers_22012024
             dir = "down";
             isDead = false;
             healthSystem = new HealthSystem(health);
-            currency = new Currency();
         }
 
 

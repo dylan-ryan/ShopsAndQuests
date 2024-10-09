@@ -25,11 +25,13 @@ namespace FirstPlayable_CalebWolthers_22012024
         private Map map;
         private Player player;
         public HealthSystem healthSystem;
+        private Currency currency;
 
-        public Enemy(Map map, Player player)
+        public Enemy(Map map, Player player, Currency currency)
         {
             this.map = map;
             this.player = player;
+            this.currency = currency;
             healthSystem = new HealthSystem(health);
         }
 
