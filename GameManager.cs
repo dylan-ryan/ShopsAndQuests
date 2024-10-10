@@ -30,9 +30,12 @@ namespace FirstPlayable_CalebWolthers_22012024
             ui = new UI(player, map, enemyManager, currency);
             ui.LoadStartingScreen();
             itemManager = new ItemManager(player, map, ui);
+
+            // Create three separate shops
             shop = new Shop(currency, player, map, ui, 10, 10);
-            Shop shop2 = new Shop(currency, player, map, ui, 10, 10);
-            Shop shop3 = new Shop(currency, player, map, ui, 10, 10);
+            Shop shop2 = new Shop(currency, player, map, ui, 12, 10);
+            Shop shop3 = new Shop(currency, player, map, ui, 14, 10);
+
             player.SetStuff(map, enemyManager, ui, itemManager);
             map.DisplayMap();
 
@@ -55,34 +58,43 @@ namespace FirstPlayable_CalebWolthers_22012024
 
                 GetInput();
 
-                // Check if the shop is open
+                // Check if any shop is open
                 if (shop.IsShopOpen())
                 {
-                    // Handle shop input only
+                    // Handle input only for the first shop
                     shop.HandleInput(input);
+                }
+                else if (shop2.IsShopOpen())
+                {
+                    // Handle input only for the second shop
+                    shop2.HandleInput(input);
+                }
+                else if (shop3.IsShopOpen())
+                {
+                    // Handle input only for the third shop
+                    shop3.HandleInput(input);
                 }
                 else
                 {
-                    // Update
+                    // Update when no shop is open
                     itemManager.UpdateItems();
                     player.Update(input);
                     shop.Update();
+                    shop2.Update();
+                    shop3.Update();
                     enemyManager.UpdateEnemies();
 
-                    // Draw
+                    // Draw game entities
                     itemManager.DrawItems();
                     enemyManager.DrawEnemies();
                     player.Draw();
+                    shop.DrawShop();
+                    shop2.DrawShop();
+                    shop3.DrawShop();
                     map.DisplayMap();
                     ui.Draw();
-                    shop.DrawShop();
 
-                    // Open the shop by player interaction
-                    if (input.Key == ConsoleKey.Q)
-                    {
-                        Console.Clear();
-                        shop.DisplayShop();
-                    }
+                    // Draw all shops
                 }
             }
 

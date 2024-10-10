@@ -85,7 +85,7 @@ namespace FirstPlayable_CalebWolthers_22012024
                         break;
                     case ConsoleKey.Escape:
                         isOpen = false;
-                        ClearShop( 6, 17);
+                        ClearShop(9, 17);
                         break;
                     default:
                         Console.SetCursorPosition(45, 17);

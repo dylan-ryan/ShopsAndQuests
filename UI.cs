@@ -180,7 +180,7 @@ namespace FirstPlayable_CalebWolthers_22012024
             Console.SetCursorPosition(legendStartPosX, legendStartPosY + 5);
             Console.WriteLine("~ - Water");
             Console.SetCursorPosition(legendStartPosX, legendStartPosY + 6);
-            //Console.WriteLine(ItemHealth.itemChar + " - Health Potion");
+            Console.WriteLine("$ - Shop");
             Console.SetCursorPosition(legendStartPosX, legendStartPosY + 7);
             //Console.WriteLine(ItemInvincible.itemChar + " - Invincibility");
             Console.SetCursorPosition(legendStartPosX, legendStartPosY + 8);
