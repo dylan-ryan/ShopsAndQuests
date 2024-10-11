@@ -98,11 +98,11 @@ namespace FirstPlayable_CalebWolthers_22012024
         {
             quest4Completed = true;
             Console.Clear();
-            Console.SetCursorPosition(0, 38);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Quest 4 Complete: Kill the Dragon! YOU WIN!");
+            Console.WriteLine("Press any key to exit.");
             Console.ForegroundColor = ConsoleColor.White;
-
+            Console.ReadKey();
             Environment.Exit(0);
         }
 
