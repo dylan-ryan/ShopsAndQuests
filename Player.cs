@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,6 +25,7 @@ namespace FirstPlayable_CalebWolthers_22012024
         public HealthSystem healthSystem;
         private UI ui;
 
+        public string LastKilledEnemy { get; set; }
 
         public void SetStuff(Map map, EnemyManager enemyManager, UI ui, ItemManager itemManager)
         {
@@ -42,8 +41,8 @@ namespace FirstPlayable_CalebWolthers_22012024
             posX = Settings.playerStartPosX;
             posY = Settings.playerStartPosY;
             freezeEnemies = false;
+            LastKilledEnemy = null;
         }
-
 
         public void Update(ConsoleKeyInfo input)
         {
@@ -65,13 +64,12 @@ namespace FirstPlayable_CalebWolthers_22012024
             }
         }
 
-
-        //Moves the player
+        // Moves the player
         public void Move(int nextX, int nextY)
         {
             moves++;
 
-            nextPosX = posX + nextX; 
+            nextPosX = posX + nextX;
             nextPosY = posY + nextY;
 
             lastPosY = posY;
@@ -81,34 +79,24 @@ namespace FirstPlayable_CalebWolthers_22012024
 
             posY = nextPosY;
             posX = nextPosX;
-
-            //EnemyManager.UpdateEnemies();
         }
 
         public void Draw()
         {
             map.map[lastPosY, lastPosX] = '`';
-
             map.map[posY, posX] = playerChar;
         }
 
-
-
-        //Makes sure the player doesnt move
         public void CantMove()
         {
             nextPosY = lastPosY;
             nextPosX = lastPosX;
         }
 
-
-        //Checks the tile in front of the player to see whats there
         public void CheckNextMove()
         {
-
             if (posX != map.width - 1 && posY != map.height - 1 && posX != 0 && posY != 0)
             {
-
                 if (map.map[posY, nextPosX] == '^' || map.map[nextPosY, posX] == '^')
                 {
                     CantMove();
@@ -124,7 +112,6 @@ namespace FirstPlayable_CalebWolthers_22012024
 
                 CheckForEnemies();
                 CheckForItems();
-
             }
         }
 
@@ -140,6 +127,12 @@ namespace FirstPlayable_CalebWolthers_22012024
                         enemy.healthSystem.health = 0;
                         enemy.healthSystem.TakeDamage(attack);
                         enemy.health += enemy.healthSystem.health;
+
+                        if (enemy.health <= 0)
+                        {
+                            LastKilledEnemy = enemy.GetType().Name;
+                        }
+
                         Console.SetCursorPosition(0, map.cameraHeight + 22);
                         ui.UpdateHUD(enemy);
                     }
@@ -157,8 +150,5 @@ namespace FirstPlayable_CalebWolthers_22012024
                 }
             }
         }
-
-
-
     }
 }

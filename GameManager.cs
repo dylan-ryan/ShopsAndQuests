@@ -17,6 +17,7 @@ namespace FirstPlayable_CalebWolthers_22012024
         public static bool gameOver;
         public static Currency currency;
         public static Shop shop;
+        public static Quests quests;
 
         public void Play()
         {
@@ -35,6 +36,8 @@ namespace FirstPlayable_CalebWolthers_22012024
             shop = new Shop(currency, player, map, ui, 10, 10);
             Shop shop2 = new Shop(currency, player, map, ui, 12, 10);
             Shop shop3 = new Shop(currency, player, map, ui, 14, 10);
+
+            quests = new Quests(currency);
 
             player.SetStuff(map, enemyManager, ui, itemManager);
             map.DisplayMap();
@@ -76,13 +79,18 @@ namespace FirstPlayable_CalebWolthers_22012024
                 }
                 else
                 {
-                    // Update when no shop is open
                     itemManager.UpdateItems();
                     player.Update(input);
                     shop.Update();
                     shop2.Update();
                     shop3.Update();
                     enemyManager.UpdateEnemies();
+
+                    if (player.LastKilledEnemy != null)
+                    {
+                        quests.UpdateQuestStatus(player.LastKilledEnemy);
+                        player.LastKilledEnemy = null;
+                    }
 
                     // Draw game entities
                     itemManager.DrawItems();
@@ -94,7 +102,7 @@ namespace FirstPlayable_CalebWolthers_22012024
                     map.DisplayMap();
                     ui.Draw();
 
-                    // Draw all shops
+                    quests.DisplayQuests();
                 }
             }
 
@@ -103,12 +111,10 @@ namespace FirstPlayable_CalebWolthers_22012024
             Console.WriteLine("Game Over, try again");
         }
 
-
         public void GetInput()
         {
             input = Console.ReadKey(true);
         }
-
 
         private ConsoleKeyInfo input;
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace FirstPlayable_CalebWolthers_22012024
         private Map map;
         public HealthSystem healthSystem;
         public Currency currency;
+        public Quests quest;
 
         public EnemyDragon(Map map, Player player,Currency currency) : base(map, player, currency)
         {
@@ -31,6 +33,7 @@ namespace FirstPlayable_CalebWolthers_22012024
             isDead = false;
             this.currency = currency;
             healthSystem = new HealthSystem(health);
+            quest = new Quests(currency);
         }
 
 
@@ -142,6 +145,8 @@ namespace FirstPlayable_CalebWolthers_22012024
             Char = '`';
             map.DisplayMap();
             isDead = true;
+            player.LastKilledEnemy = "Dragon";
+            quest.UpdateQuestStatus("Dragon");
             //enemyCount--;
         }
 

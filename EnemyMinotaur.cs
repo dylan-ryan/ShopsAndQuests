@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace FirstPlayable_CalebWolthers_22012024
         private Map map;
         public HealthSystem healthSystem;
         public Currency currency;
+        public Quests quest;
 
         public EnemyMinotaur(Map map, Player player, Currency currency) : base(map, player, currency)
         {
@@ -31,6 +33,7 @@ namespace FirstPlayable_CalebWolthers_22012024
             dir = "down";
             isDead = false;
             healthSystem = new HealthSystem(health);
+            quest = new Quests(currency);
         }
 
 
@@ -109,6 +112,8 @@ namespace FirstPlayable_CalebWolthers_22012024
             map.DisplayMap();
             isDead = true;
             currency.AddCurrency(2);
+            player.LastKilledEnemy = "Minotaur";
+            quest.UpdateQuestStatus("Minotaur");
             //enemyCount--;
         }
 

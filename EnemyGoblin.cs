@@ -17,6 +17,7 @@ namespace FirstPlayable_CalebWolthers_22012024
         private Map map;
         public HealthSystem healthSystem;
         public Currency currency;
+        public Quests quest;
 
         public EnemyGoblin(Map map, Player player, Currency currency) : base(map, player, currency) 
         {
@@ -31,6 +32,7 @@ namespace FirstPlayable_CalebWolthers_22012024
             dir = "down";
             isDead = false;
             healthSystem = new HealthSystem(health);
+            quest = new Quests(currency);
         }
 
 
@@ -108,50 +110,10 @@ namespace FirstPlayable_CalebWolthers_22012024
             map.DisplayMap();
             isDead = true;
             currency.AddCurrency(1);
-            //enemyCount--;
+            player.LastKilledEnemy = "Goblin";
+            quest.UpdateQuestStatus("Goblin");
         }
 
 
     }
 }
-/*
-
-        public EnemyGoblin()
-        {
-            enemyName = Settings.goblinName;
-            enemyChar = Settings.goblinChar;
-            enemyHealth = Settings.goblinHealth;
-            enemyDamage = Settings.goblinDamage;
-            enemyDir = Settings.goblinDir;
-
-            enemyMinX = Settings.goblinMinX;
-            enemyMaxX = Settings.goblinMaxX;
-            enemyMinY = Settings.goblinMinY;
-            enemyMaxY = Settings.goblinMaxY;
-        }
-
-
-        //Bounces vertically
-        public override void Update(Enemy ey)
-        {
-            if (ey.enemyChar != '`')
-            {
-                //Up
-                if (ey.enemyDir == "up")
-                {
-                    EnemyMove(ey, 0, -1, "down");
-                }
-                //Down
-                else if (ey.enemyDir == "down")
-                {
-                    EnemyMove(ey, 0, 1, "up");
-                }
-            }
-        }
-
-
-
-    }
-    
-} 
-*/

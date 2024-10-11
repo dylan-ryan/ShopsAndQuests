@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace FirstPlayable_CalebWolthers_22012024
         private Map map;
         public HealthSystem healthSystem;
         public Currency currency;
+        public Quests quest;
 
         public EnemyOrc(Map map, Player player, Currency currency) : base(map, player, currency)
         {
@@ -31,6 +33,7 @@ namespace FirstPlayable_CalebWolthers_22012024
             isDead = false;
             healthSystem = new HealthSystem(health);
             this.currency = currency;
+            quest = new Quests(currency);
         }
 
 
@@ -123,6 +126,8 @@ namespace FirstPlayable_CalebWolthers_22012024
             map.DisplayMap();
             isDead = true;
             currency.AddCurrency(3);
+            player.LastKilledEnemy = "Orc";
+            quest.UpdateQuestStatus("Orc");
             //enemyCount--;
         }
 
